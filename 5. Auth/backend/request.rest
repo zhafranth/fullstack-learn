@@ -1,0 +1,27 @@
+GET http://localhost:5000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJlLmNvbSIsIm5hbWUiOiJlIiwiaWF0IjoxNjY1ODk1Mzc1LCJleHAiOjE2NjU4OTUzOTV9.Kti-ZoFEh-ex998X0cdGvoYexzgMCq-cnHAw-CpIjO4
+###
+POST http://localhost:5000/users/register
+Content-Type: application/json
+
+{
+    "name" : "e",
+    "email" : "e.com",
+    "password" : "1234",
+    "conf_password" : "1234"
+}
+###
+
+POST http://localhost:5000/users/login
+Content-Type: application/json
+
+{
+    "email" : "e.com",
+    "password" : "1234"
+}
+
+###
+GET  http://localhost:5000/users/token
+
+###
+DELETE   http://localhost:5000/users/logout
