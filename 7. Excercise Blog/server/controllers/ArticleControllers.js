@@ -5,6 +5,7 @@ import { Op } from "sequelize";
 
 export const getArticles = async (req, res) => {
   try {
+    console.log(req.session.userId);
     let response;
     if (req.role === "admin" || req.role === "guest") {
       response = await Article.findAll({

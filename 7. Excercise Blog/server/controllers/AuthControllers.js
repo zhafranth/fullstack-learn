@@ -26,6 +26,7 @@ export const Login = async (req, res) => {
 };
 
 export const Me = async (req, res) => {
+  console.log("session: ", req.session.userId);
   if (!req.session.userId) {
     return res.status(400).json({ message: "Mohon login ke akun anda!" });
   }
