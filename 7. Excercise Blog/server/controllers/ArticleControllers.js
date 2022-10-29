@@ -5,11 +5,11 @@ import { Op } from "sequelize";
 
 export const getArticles = async (req, res) => {
   try {
-    console.log(req.session.userId);
     let response;
-    if (req.role === "admin" || req.role === "guest") {
+    if (req.role === "admin" || req.query.all === "true") {
       response = await Article.findAll({
         attributes: ["uuid", "title", "content", "createdAt"],
+        order: [["id", "DESC"]],
         include: [
           {
             model: User,
@@ -17,14 +17,14 @@ export const getArticles = async (req, res) => {
           },
           {
             model: Category,
-            attributes: ["name", "color"],
+            attributes: ["id", "name", "color"],
           },
         ],
       });
     } else {
-      console.log("condition 2");
       response = await Article.findAll({
         attributes: ["uuid", "title", "content", "createdAt"],
+        order: [["id", "DESC"]],
         where: {
           userId: req.userId,
         },
@@ -35,7 +35,7 @@ export const getArticles = async (req, res) => {
           },
           {
             model: Category,
-            attributes: ["name", "color"],
+            attributes: ["id", "name", "color"],
           },
         ],
       });

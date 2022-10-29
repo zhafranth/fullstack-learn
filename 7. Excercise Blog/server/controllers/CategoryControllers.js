@@ -47,6 +47,7 @@ export const updateCategory = async (req, res) => {
   const category = await Category.findByPk(req.params.id);
   if (!category) return res.status(400).json({ message: "Category not found" });
   const { name, color } = req.body;
+
   try {
     await category.update({ name, color });
 
